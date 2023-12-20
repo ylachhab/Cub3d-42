@@ -6,7 +6,7 @@
 /*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 20:09:12 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/18 20:11:41 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/20 13:04:20 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 void	my_pixel_put(t_cub3d *data, int x, int y, int color)
 {
 	char	*dst;
+
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	*(int *)dst = color;
 }
 
 void	put_color(t_cub3d *data, int x, int y, int color)
@@ -58,13 +59,13 @@ void	draw_map(t_cub3d *data)
 		{
 			if (data->map[i][j] == '1')
 				put_color(data, (j * TILE_SIZE) * MINIMAP_SCALE,
-					(i * TILE_SIZE)* MINIMAP_SCALE, 0x000000);
+					(i * TILE_SIZE) * MINIMAP_SCALE, 0x000000);
 			else if (data->map[i][j] == '0')
 				put_color(data, (j * TILE_SIZE) * MINIMAP_SCALE,
 					(i * TILE_SIZE) * MINIMAP_SCALE, 0xFFFFFF);
 			else if (data->map[i][j] == ' ')
 				put_color(data, (j * TILE_SIZE) * MINIMAP_SCALE,
-					(i * TILE_SIZE) * MINIMAP_SCALE, 0x46499E);
+					(i * TILE_SIZE) * MINIMAP_SCALE, 0x9C9C9C);
 			j++;
 		}
 		i++;
@@ -84,7 +85,8 @@ void	draw_player(t_cub3d *data)
 		i = data->p_x - x;
 		while (i <= data->p_x + x)
 		{
-			my_pixel_put(data, i * MINIMAP_SCALE, (data->p_y + y) * MINIMAP_SCALE, 0xD61529);
+			my_pixel_put(data, i * MINIMAP_SCALE, (data->p_y + y)
+				* MINIMAP_SCALE, 0xD61529);
 			i++;
 		}
 		y++;
@@ -125,8 +127,8 @@ void	draw_line1(t_cub3d *data)
 
 	x2 = data->p_x * MINIMAP_SCALE;
 	y2 = data->p_y * MINIMAP_SCALE;
-	x1 = (data->p_x + cos(data->angle) * 30) * MINIMAP_SCALE;
-	y1 = (data->p_y + sin(data->angle) * 30) * MINIMAP_SCALE;
+	x1 = (data->p_x + cos(data->angle) * 80) * MINIMAP_SCALE;
+	y1 = (data->p_y + sin(data->angle) * 80) * MINIMAP_SCALE;
 	dx = x1 - x2;
 	dy = y1 - y2;
 	if (fabs(dx) >= fabs(dy))
@@ -163,8 +165,30 @@ void	cast_rays(t_cub3d *data)
 	}
 }
 
+void	ceiling_floor_color(t_cub3d *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->width * TILE_SIZE)
+	{
+		j = 0;
+		while (j < data->height * TILE_SIZE)
+		{
+			if (j >= data->height / 2 * TILE_SIZE)
+				my_pixel_put(data, i, j, 0x169120);
+			else
+				my_pixel_put(data, i, j, 0x0073E8FF);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	draw(t_cub3d *data)
 {
+	ceiling_floor_color(data);
 	cast_rays(data);
 	draw_map(data);
 	draw_player(data);
@@ -181,7 +205,6 @@ void	load_game(t_cub3d *data)
 			data->height * TILE_SIZE);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
-	draw(data);
 	mlx_hook(data->mlx_win, 2, 0, &keypressed, data);
 	mlx_hook(data->mlx_win, 3, 0, &keyrelease, data);
 	mlx_loop_hook(data->mlx, &move, data);

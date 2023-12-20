@@ -6,7 +6,7 @@
 /*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:39:39 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/18 16:00:15 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/20 11:21:06 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <stdbool.h>
 # include <limits.h>
 
-# define TILE_SIZE 32
-# define RADIUS 5
+# define TILE_SIZE 64
+# define RADIUS 10
 # define MINIMAP_SCALE 0.2
 
 typedef struct s_cub3d

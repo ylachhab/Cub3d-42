@@ -6,7 +6,7 @@
 /*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:46:10 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/16 10:20:34 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/20 13:01:36 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	down(t_cub3d *data)
 	{
 		data->p_x = new_x;
 		data->p_y = new_y;
-		mlx_clear_window(data->mlx, data->mlx_win);
-		draw(data);
 	}
 }
 
@@ -41,8 +39,6 @@ void	left(t_cub3d *data)
 	{
 		data->p_x = new_x;
 		data->p_y = new_y;
-		mlx_clear_window(data->mlx, data->mlx_win);
-		draw(data);
 	}
 }
 
@@ -58,21 +54,15 @@ void	right(t_cub3d *data)
 	{
 		data->p_x = new_x;
 		data->p_y = new_y;
-		mlx_clear_window(data->mlx, data->mlx_win);
-		draw(data);
 	}
 }
 
 void	rot_left(t_cub3d *data)
 {
 	data->angle += -1 * data->rot_speed;
-	mlx_clear_window(data->mlx, data->mlx_win);
-	draw(data);
 }
 
 void	rot_right(t_cub3d *data)
 {
 	data->angle += 1 * data->rot_speed;
-	mlx_clear_window(data->mlx, data->mlx_win);
-	draw(data);
 }

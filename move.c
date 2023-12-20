@@ -6,7 +6,7 @@
 /*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:28:27 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/18 11:05:46 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/20 13:01:06 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ void	up(t_cub3d *data)
 	{
 		data->p_x = new_x;
 		data->p_y = new_y;
-		mlx_clear_window(data->mlx, data->mlx_win);
-		draw(data);
 	}
 }
 
@@ -101,5 +99,7 @@ int	move(t_cub3d *data)
 		rot_left(data);
 	if (data->rot_right == true)
 		rot_right(data);
+	mlx_clear_window(data->mlx, data->mlx_win);
+	draw(data);
 	return (1);
 }
