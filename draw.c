@@ -6,7 +6,7 @@
 /*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 20:09:12 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/20 13:39:52 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/24 11:59:16 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ void	my_pixel_put(t_cub3d *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(int *)dst = color;
+}
+
+void	my_pixel_put_floor(t_cub3d *data, int x, int y, int *color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(int *)dst = (color[0] << 16) + (color[1] << 8) + color[2];
 }
 
 void	put_color(t_cub3d *data, int x, int y, int color)
@@ -177,9 +185,9 @@ void	ceiling_floor_color(t_cub3d *data)
 		while (j < data->height * TILE_SIZE)
 		{
 			if (j >= data->height / 2 * TILE_SIZE)
-				my_pixel_put(data, i, j, 0x169120);
+				my_pixel_put_floor(data, i, j, data->floor);
 			else
-				my_pixel_put(data, i, j, 0x0073E8FF);
+				my_pixel_put_floor(data, i, j, data->ceiling);
 			j++;
 		}
 		i++;

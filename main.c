@@ -6,7 +6,7 @@
 /*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 15:59:04 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/20 13:02:33 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/23 17:58:01 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ void	init_var(t_cub3d *data)
 	data->rot_speed = 3 * (M_PI / 180);
 	data->fov_angle = 60 * (M_PI / 180);
 	data->wall_strip = 1;
-	data->up = false;
 	data->down = false;
-	data->left = false;
 	data->right = false;
 	data->rot_left = false;
 	data->rot_right = false;
