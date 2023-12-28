@@ -6,18 +6,11 @@
 /*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 18:16:54 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/27 12:08:55 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/28 16:40:57 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	normalize_angle(t_cub3d *data)
-{
-	data->ray_angle = remainder(data->ray_angle, (2 * M_PI));
-	if (data->ray_angle < 0)
-		data->ray_angle = (2 * M_PI) + data->ray_angle;
-}
 
 float	distance_value(float x1, float y1, float x2, float y2)
 {
@@ -29,8 +22,8 @@ int	has_wall(t_cub3d *data, float x, float y)
 	double	nextx;
 	double	nexty;
 
-	if (x < 0 || x > (data->width * TILE_SIZE) || y < 0
-		|| y > (data->height * TILE_SIZE))
+	if (x < 0 || x >= (WIDTH) || y < 0
+		|| y >= (HEIGHT))
 		return (true);
 	nextx = floor(x / TILE_SIZE);
 	nexty = floor(y / TILE_SIZE);
@@ -55,7 +48,6 @@ void	ray_direction(t_cub3d *data, t_ray *ray)
 		ray->yintercept += TILE_SIZE;
 }
 
-
 void	put_wall_color(t_cub3d *data, t_ray ray, int a, int x)
 {
 	t_img	tab;
@@ -70,7 +62,7 @@ void	put_wall_color(t_cub3d *data, t_ray ray, int a, int x)
 	else
 		off = fmod(data->wallhitx, TILE_SIZE) * tab.tex_x / TILE_SIZE;
 	y = -1;
-	while (++y < (data->height * TILE_SIZE))
+	while (++y < (HEIGHT))
 	{
 		if (y >= data->begin && y < data->end)
 		{
@@ -92,11 +84,11 @@ void	render_projected_walls(t_cub3d *data, int column, t_ray	ray)
 	int		a;
 
 	data->distance *= cos(data->ray_angle - data->angle);
-	dis_proj_plane = ((data->width * TILE_SIZE) / 2) / tan(data->fov_angle / 2);
+	dis_proj_plane = ((WIDTH) / 2) / tan(data->fov_angle / 2);
 	data->wall_height = (TILE_SIZE / data->distance) * dis_proj_plane;
 	x = column * data->wall_strip;
-	data->begin = ((data->height * TILE_SIZE) / 2) - (data->wall_height / 2);
-	data->end = ((data->height * TILE_SIZE) / 2) + (data->wall_height / 2);
+	data->begin = ((HEIGHT) / 2) - (data->wall_height / 2);
+	data->end = ((HEIGHT) / 2) + (data->wall_height / 2);
 	if (data->distance > 400)
 		a = 150;
 	else

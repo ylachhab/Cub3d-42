@@ -6,7 +6,7 @@
 /*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:39:39 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/27 16:51:10 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/28 17:01:40 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,16 @@
 # include <stdbool.h>
 # include <limits.h>
 
-# define TILE_SIZE 64
-# define RADIUS 10
+# define TILE_SIZE 32
+# define RADIUS 4
 # define MINIMAP_SCALE 0.2
+# define MINIMAP_WIDTH 300
+# define MINIMAP_HEIGHT 200
 # define MOUSE_ROT_SPEED 0.0007
+# define WIDTH 1200
+# define HEIGHT 720
 
-typedef struct s_img
+typedef struct s_im0g
 {
 	void	*img;
 	void	*addr;
@@ -92,8 +96,6 @@ typedef struct s_cub3d
 	bool	center_mouse;
 }	t_cub3d;
 
-
-
 typedef struct s_ray
 {
 	float	xintercept;
@@ -114,6 +116,18 @@ typedef struct s_ray
 	float	x;
 }	t_ray;
 
+typedef struct s_line
+{
+	float	x;
+	float	y;
+	float	x1;
+	float	y1;
+	float	x2;
+	float	y2;
+	float	dx;
+	float	dy;
+	float	step;
+}	t_line;
 
 int		ft_strcmp(char *s1, char *s2);
 void	empty_line(char *line);
@@ -160,7 +174,6 @@ void	rot_right(t_cub3d *data);
 int		check_position_p(t_cub3d *data, double x, double y);
 void	cast(t_cub3d *data, int column);
 void	normalize_angle(t_cub3d *data);
-void	draw_line(t_cub3d *data);
 int		has_wall(t_cub3d *data, float x, float y);
 void	check_distance(t_cub3d *data, t_ray *ray);
 void	vert_intersection(t_cub3d *data, t_ray *ray);
@@ -172,5 +185,12 @@ void	my_pixel_put_floor(t_cub3d *data, int x, int y, int *color);
 t_img	get_img(t_cub3d *data, t_ray ray);
 void	render_projected_walls(t_cub3d *data, int column, t_ray	ray);
 void	put_wall_color(t_cub3d *data, t_ray ray, int a, int x);
+void	draw_minimap(t_cub3d *data);
+void	draw_player(t_cub3d *data);
+void	set_tex(t_cub3d *data, t_img *tex, char *str);
+void	center_mouse(t_cub3d *data);
+int		mouse_hook(int x, int y, t_cub3d *data);
+int		get_color(t_cub3d *data, int j, int i);
+void	draw_line(t_cub3d *data, t_line *line);
 
 #endif

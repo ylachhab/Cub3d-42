@@ -14,6 +14,8 @@ SRCS =	main.c \
 		draw.c \
 		draw_utils.c \
 		draw_utils1.c \
+		draw_utils2.c \
+		draw_utils3.c \
 		move.c \
 		move_utils.c
 

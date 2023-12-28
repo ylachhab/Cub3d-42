@@ -6,7 +6,7 @@
 /*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:35:39 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/27 12:08:55 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/28 16:22:22 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ void	horz_intersection(t_cub3d *data, t_ray *ray)
 	ray->xintercept = data->p_x + ((ray->yintercept - data->p_y)
 			/ tan(data->ray_angle));
 	ray->ystep = TILE_SIZE;
-	if (!ray->ray_facing_down)
-		ray->ystep *= -1;
+	!ray->ray_facing_down && (ray->ystep *= -1);
 	ray->xstep = TILE_SIZE / tan(data->ray_angle);
 	if ((!ray->ray_facing_right && ray->xstep > 0)
 		|| (ray->ray_facing_right && ray->xstep < 0))
 		ray->xstep *= -1;
-	while (ray->xintercept >= 0 && ray->xintercept < (data->width * TILE_SIZE)
-		&& ray->yintercept >= 0 && ray->yintercept < (data->height * TILE_SIZE))
+	while (ray->xintercept >= 0 && ray->xintercept < (WIDTH)
+		&& ray->yintercept >= 0 && ray->yintercept < (HEIGHT)
+		&& floor(ray->xintercept / TILE_SIZE) < data->width
+		&& floor(ray->yintercept / TILE_SIZE) < data->height)
 	{
 		ray->y = ray->yintercept;
-		if (!ray->ray_facing_down)
-			ray->y--;
+		!ray->ray_facing_down && ray->y--;
 		if (has_wall(data, ray->xintercept, ray->y))
 		{
 			ray->found_horz_wall = true;
@@ -46,18 +46,18 @@ void	vert_intersection(t_cub3d *data, t_ray *ray)
 	ray->yintercept = data->p_y + ((ray->xintercept - data->p_x)
 			* tan(data->ray_angle));
 	ray->xstep = TILE_SIZE;
-	if (!ray->ray_facing_right)
-		ray->xstep *= -1;
+	!ray->ray_facing_right && (ray->xstep *= -1);
 	ray->ystep = TILE_SIZE * tan(data->ray_angle);
 	if ((!ray->ray_facing_down && ray->ystep > 0)
 		|| (ray->ray_facing_down && ray->ystep < 0))
 		ray->ystep *= -1;
-	while (ray->xintercept >= 0 && ray->xintercept < (data->width * TILE_SIZE)
-		&& ray->yintercept >= 0 && ray->yintercept < (data->height * TILE_SIZE))
+	while (ray->xintercept >= 0 && ray->xintercept < (WIDTH)
+		&& ray->yintercept >= 0 && ray->yintercept < (HEIGHT)
+		&& floor(ray->xintercept / TILE_SIZE) < data->width
+		&& floor(ray->yintercept / TILE_SIZE) < data->height)
 	{
 		ray->x = ray->xintercept;
-		if (!ray->ray_facing_right)
-			ray->x--;
+		!ray->ray_facing_right && ray->x--;
 		if (has_wall(data, ray->x, ray->yintercept))
 		{
 			ray->found_vert_wall = true;
