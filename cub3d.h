@@ -6,7 +6,7 @@
 /*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:39:39 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/24 14:16:00 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/27 16:51:10 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,29 @@
 # define TILE_SIZE 64
 # define RADIUS 10
 # define MINIMAP_SCALE 0.2
+# define MOUSE_ROT_SPEED 0.0007
 
-typedef struct s_cub3d
+typedef struct s_img
 {
-	void	*mlx;
-	void	*mlx_win;
 	void	*img;
 	void	*addr;
+	int		*addr_tex;
+	int		tex_x;
+	int		tex_y;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+}	t_img;
+
+typedef struct s_cub3d
+{
+	t_img	img;
+	t_img	img_n;
+	t_img	img_s;
+	t_img	img_w;
+	t_img	img_e;
+	void	*mlx;
+	void	*mlx_win;
 	char	**map;
 	char	*tmp;
 	int		width;
@@ -56,6 +69,7 @@ typedef struct s_cub3d
 	bool	left;
 	bool	rot_right;
 	bool	rot_left;
+	bool	mouse_show;
 	float	angle;
 	int		walk_dir;
 	int		turn_dir;
@@ -71,7 +85,14 @@ typedef struct s_cub3d
 	float	distance;
 	bool	hit_vertical;
 	float	wall_height;
+	float	end;
+	float	begin;
+	int		mouse_x;
+	int		mouse_y;
+	bool	center_mouse;
 }	t_cub3d;
+
+
 
 typedef struct s_ray
 {
@@ -147,5 +168,9 @@ void	horz_intersection(t_cub3d *data, t_ray *ray);
 void	ray_direction(t_cub3d *data, t_ray *ray);
 int		has_wall(t_cub3d *data, float x, float y);
 float	distance_value(float x1, float y1, float x2, float y2);
+void	my_pixel_put_floor(t_cub3d *data, int x, int y, int *color);
+t_img	get_img(t_cub3d *data, t_ray ray);
+void	render_projected_walls(t_cub3d *data, int column, t_ray	ray);
+void	put_wall_color(t_cub3d *data, t_ray ray, int a, int x);
 
 #endif

@@ -34,7 +34,7 @@ mlx :
 	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) libft/libft.a gnl/libftgnl.a -lmlx -framework OpenGl -framework Appkit -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) libft/libft.a gnl/libftgnl.a mlx/libmlx.a -lmlx -framework OpenGl -framework Appkit -o $(NAME)
 
 clean:
 	rm -rf $(OBJS)

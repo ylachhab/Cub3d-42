@@ -6,7 +6,7 @@
 /*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 18:16:54 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/18 09:59:19 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/27 12:08:55 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,54 @@ void	ray_direction(t_cub3d *data, t_ray *ray)
 	ray->yintercept = floor(data->p_y / TILE_SIZE) * TILE_SIZE;
 	if (ray->ray_facing_down)
 		ray->yintercept += TILE_SIZE;
+}
+
+
+void	put_wall_color(t_cub3d *data, t_ray ray, int a, int x)
+{
+	t_img	tab;
+	int		color;
+	int		off;
+	int		var;
+	int		y;
+
+	tab = get_img(data, ray);
+	if (data->hit_vertical)
+		off = fmod(data->wallhity, TILE_SIZE) * tab.tex_y / TILE_SIZE;
+	else
+		off = fmod(data->wallhitx, TILE_SIZE) * tab.tex_x / TILE_SIZE;
+	y = -1;
+	while (++y < (data->height * TILE_SIZE))
+	{
+		if (y >= data->begin && y < data->end)
+		{
+			var = ((y - data->begin) * tab.tex_y) / data->wall_height;
+			color = tab.addr_tex[var * tab.tex_x + off];
+			my_pixel_put(data, x, y, a | color);
+		}
+		else if (y < data->begin)
+			my_pixel_put_floor(data, x, y, data->ceiling);
+		else if (y > data->end)
+			my_pixel_put_floor(data, x, y, data->floor);
+	}
+}
+
+void	render_projected_walls(t_cub3d *data, int column, t_ray	ray)
+{
+	float	dis_proj_plane;
+	int		x;
+	int		a;
+
+	data->distance *= cos(data->ray_angle - data->angle);
+	dis_proj_plane = ((data->width * TILE_SIZE) / 2) / tan(data->fov_angle / 2);
+	data->wall_height = (TILE_SIZE / data->distance) * dis_proj_plane;
+	x = column * data->wall_strip;
+	data->begin = ((data->height * TILE_SIZE) / 2) - (data->wall_height / 2);
+	data->end = ((data->height * TILE_SIZE) / 2) + (data->wall_height / 2);
+	if (data->distance > 400)
+		a = 150;
+	else
+		a = (150 * data->distance) / 400;
+	a <<= 24;
+	put_wall_color(data, ray, a, x);
 }

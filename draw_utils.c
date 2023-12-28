@@ -6,7 +6,7 @@
 /*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:35:39 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/20 11:41:19 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/27 12:08:55 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,40 +98,25 @@ void	check_distance(t_cub3d *data, t_ray *ray)
 	}
 }
 
-void	render_projected_walls(t_cub3d *data, int column)
+t_img	get_img(t_cub3d *data, t_ray ray)
 {
-	float	dis_proj_plane;
-	float	end;
-	float	begin;
-	int		x;
-	int		y;
-	int		a;
+	t_img	tab[4];
+	int		index;
 
-	data->distance *= cos(data->ray_angle - data->angle);
-	dis_proj_plane = ((data->width * TILE_SIZE) / 2) / tan(data->fov_angle / 2);
-	data->wall_height = (TILE_SIZE / data->distance) * dis_proj_plane;
-	x = column * data->wall_strip;
-	begin = ((data->height * TILE_SIZE) / 2) - (data->wall_height / 2);
-	end = ((data->height * TILE_SIZE) / 2) + (data->wall_height / 2);
-	if (data->distance > 400)
-		a = 150;
-	else
-		a = (150 * data->distance) / 400;
-	a <<= 24;
-	y = -1;
-	int color = a | 0xBAB3BA;
-	while (++y < (data->height * TILE_SIZE))
-	{
-		// if (y >= 0 && y <= (0.2 * data->height * TILE_SIZE)
-		// 	&& x >= 0 && x <= (0.2 * data->width * TILE_SIZE))
-		// 	continue ;
-		if (y >= begin && y <= end)
-			my_pixel_put(data, x, y, color);
-		// else if (y < begin)
-		// 	my_pixel_put(data, x, y, 0x0073E8FF);
-		// else if (y > end)
-		// 	my_pixel_put(data, x, y, 0x169120);
-	}
+	index = 0;
+	tab[0] = data->img_n;
+	tab[1] = data->img_s;
+	tab[2] = data->img_w;
+	tab[3] = data->img_e;
+	if (!ray.ray_facing_down && !data->hit_vertical)
+		index = 0;
+	else if (ray.ray_facing_down && !data->hit_vertical)
+		index = 1;
+	else if (ray.ray_facing_right && data->hit_vertical)
+		index = 3;
+	else if (!ray.ray_facing_right && data->hit_vertical)
+		index = 2;
+	return (tab[index]);
 }
 
 void	cast(t_cub3d *data, int column)
@@ -151,5 +136,5 @@ void	cast(t_cub3d *data, int column)
 		ray.xintercept += TILE_SIZE;
 	vert_intersection(data, &ray);
 	check_distance(data, &ray);
-	render_projected_walls(data, column);
+	render_projected_walls(data, column, ray);
 }

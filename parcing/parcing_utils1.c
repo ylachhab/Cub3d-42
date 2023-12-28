@@ -6,7 +6,7 @@
 /*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:53:38 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/09 15:35:52 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/27 17:02:16 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	atoi_util(char *str)
 	result = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
+	if (str[i] == '\0')
+		print_error("Error in color\n");
 	if (str[i] == '+')
 		i++;
 	if (str[i] == '-')

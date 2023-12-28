@@ -6,7 +6,7 @@
 /*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:18:47 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/10 11:15:30 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/26 15:30:01 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	error(t_cub3d *data, char *str)
 
 void	print_error(char *str)
 {
+	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(str, 2);
 	exit (1);
 }

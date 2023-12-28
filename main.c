@@ -6,7 +6,7 @@
 /*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 15:59:04 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/23 17:58:01 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/27 16:51:10 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	init_var(t_cub3d *data)
 	data->right = false;
 	data->rot_left = false;
 	data->rot_right = false;
+	data->mouse_show = true;
 	data->wall_height = 0;
 }
 
