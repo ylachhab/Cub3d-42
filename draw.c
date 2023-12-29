@@ -6,7 +6,7 @@
 /*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 20:09:12 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/29 13:49:32 by nel-baz          ###   ########.fr       */
+/*   Updated: 2023/12/29 16:36:40 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_position_p(t_cub3d *data, double x, double y)
 		j = x - 2;
 		while (j <= x + 2)
 		{
-			if (data->map[(int)i / TILE_SIZE][(int)j / TILE_SIZE] == '1')
+			if (data->map[(int)(i / TILE_SIZE)][(int)(j / TILE_SIZE)] == '1')
 				return (0);
 			j++;
 		}
