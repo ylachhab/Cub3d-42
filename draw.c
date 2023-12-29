@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 20:09:12 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/28 17:06:13 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/29 13:49:32 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	load_game(t_cub3d *data)
 	set_tex(data, &data->img_e, "wall2.xpm");
 	mlx_hook(data->mlx_win, 2, 0, &keypressed, data);
 	mlx_hook(data->mlx_win, 3, 0, &keyrelease, data);
-	mlx_hook(data->mlx_win, 17, 0, &cross_click, &data);
+	mlx_hook(data->mlx_win, 17, 0, &cross_click, data);
 	mlx_hook(data->mlx_win, 6, 0, mouse_hook, data);
 	mlx_loop_hook(data->mlx, &move, data);
 	mlx_loop(data->mlx);

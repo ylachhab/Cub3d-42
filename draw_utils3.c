@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 16:19:14 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/28 16:40:07 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/29 13:17:50 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	get_color(t_cub3d *data, int j, int i)
 
 	x = floor(data->p_x - MINIMAP_WIDTH / 2 + j);
 	y = floor(data->p_y - MINIMAP_HEIGHT / 2 + i);
-	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+	if (x < 0 || x >= data->width * TILE_SIZE || y < 0 || y >= data->height * TILE_SIZE)
 		return (0x9C9C9C);
 	else if (data->map[y / TILE_SIZE][x / TILE_SIZE] == '1')
 		return (0x000000);

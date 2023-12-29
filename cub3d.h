@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:39:39 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/28 17:01:40 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/29 13:11:33 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,5 +192,6 @@ void	center_mouse(t_cub3d *data);
 int		mouse_hook(int x, int y, t_cub3d *data);
 int		get_color(t_cub3d *data, int j, int i);
 void	draw_line(t_cub3d *data, t_line *line);
+
 
 #endif

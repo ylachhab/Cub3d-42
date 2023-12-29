@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 18:16:54 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/28 16:40:57 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/29 13:25:42 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	has_wall(t_cub3d *data, float x, float y)
 	double	nextx;
 	double	nexty;
 
-	if (x < 0 || x >= (WIDTH) || y < 0
-		|| y >= (HEIGHT))
+	if (x < 0 || x >= data->width * TILE_SIZE || y < 0
+		|| y >= data->height * TILE_SIZE)
 		return (true);
 	nextx = floor(x / TILE_SIZE);
 	nexty = floor(y / TILE_SIZE);
@@ -31,6 +31,7 @@ int	has_wall(t_cub3d *data, float x, float y)
 		return (true);
 	return (false);
 }
+
 
 void	ray_direction(t_cub3d *data, t_ray *ray)
 {

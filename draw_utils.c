@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:35:39 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/28 16:22:22 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/29 13:15:54 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	horz_intersection(t_cub3d *data, t_ray *ray)
 	if ((!ray->ray_facing_right && ray->xstep > 0)
 		|| (ray->ray_facing_right && ray->xstep < 0))
 		ray->xstep *= -1;
-	while (ray->xintercept >= 0 && ray->xintercept < (WIDTH)
-		&& ray->yintercept >= 0 && ray->yintercept < (HEIGHT)
+	while (ray->xintercept >= 0 && ray->xintercept < data->width * TILE_SIZE
+		&& ray->yintercept >= 0 && ray->yintercept < data->height * TILE_SIZE
 		&& floor(ray->xintercept / TILE_SIZE) < data->width
 		&& floor(ray->yintercept / TILE_SIZE) < data->height)
 	{
@@ -51,8 +51,8 @@ void	vert_intersection(t_cub3d *data, t_ray *ray)
 	if ((!ray->ray_facing_down && ray->ystep > 0)
 		|| (ray->ray_facing_down && ray->ystep < 0))
 		ray->ystep *= -1;
-	while (ray->xintercept >= 0 && ray->xintercept < (WIDTH)
-		&& ray->yintercept >= 0 && ray->yintercept < (HEIGHT)
+	while (ray->xintercept >= 0 && ray->xintercept < data->width * TILE_SIZE
+		&& ray->yintercept >= 0 && ray->yintercept < data->height * TILE_SIZE
 		&& floor(ray->xintercept / TILE_SIZE) < data->width
 		&& floor(ray->yintercept / TILE_SIZE) < data->height)
 	{
