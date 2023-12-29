@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parcing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:51:17 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/09 15:35:31 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/29 17:08:33 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@ void	stock_var(t_cub3d *data, char *key, char *value)
 	if (!ft_strcmp(key, "NO") && !data->north)
 	{
 		open_tex_file(value, key);
-		data->north = value;
+		data->north = ft_strdup(value);
 	}
 	else if (!ft_strcmp(key, "SO") && !data->soulth)
 	{
 		open_tex_file(value, key);
-		data->soulth = value;
+		data->soulth = ft_strdup(value);
 	}
 	else if (!ft_strcmp(key, "WE") && !data->west)
 	{
 		open_tex_file(value, key);
-		data->west = value;
+		data->west = ft_strdup(value);
 	}
 	else if (!ft_strcmp(key, "EA") && !data->east)
 	{
 		open_tex_file(value, key);
-		data->east = value;
+		data->east = ft_strdup(value);
 	}
 	else
 		floor_ceiling(data, value, key);

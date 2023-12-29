@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parcing_utils3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:12:17 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/28 12:34:59 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/29 17:13:17 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,7 @@ void	check_space(t_cub3d *data)
 					|| (j > 0 && data->map[i][j - 1] == ' ')
 					|| (j < data->width && data->map[i][j + 1] == ' ')
 					|| (data->map[i][j + 1] == '\0'))
-				{
-					free_str(data->map);
-					print_error("Error map is not closed\n");
-				}
+					error(data, "Error map is not closed\n");
 			}
 			j++;
 		}

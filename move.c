@@ -6,7 +6,7 @@
 /*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:28:27 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/29 13:48:59 by nel-baz          ###   ########.fr       */
+/*   Updated: 2023/12/29 17:11:43 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ int	keypressed(int keycode, t_cub3d *data)
 {
 	if (keycode == 53)
 	{
+		free(data->north);
+		free(data->soulth);
+		free(data->west);
+		free(data->east);
 		free_str(data->map);
 		exit (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 18:16:54 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/29 13:25:42 by nel-baz          ###   ########.fr       */
+/*   Updated: 2023/12/29 17:36:33 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	has_wall(t_cub3d *data, float x, float y)
 		return (true);
 	return (false);
 }
-
 
 void	ray_direction(t_cub3d *data, t_ray *ray)
 {

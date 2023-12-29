@@ -6,7 +6,7 @@
 /*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 16:15:06 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/29 13:17:03 by nel-baz          ###   ########.fr       */
+/*   Updated: 2023/12/29 17:39:08 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ void	set_tex(t_cub3d *data, t_img *tex, char *str)
 			&tex->endian);
 	if (!tex->img || !tex->addr_tex)
 	{
+		free(data->north);
+		free(data->soulth);
+		free(data->west);
+		free(data->east);
 		free_str(data->map);
 		exit(1);
 	}

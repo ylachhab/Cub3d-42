@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 15:59:04 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/28 17:06:48 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/29 17:37:06 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,26 @@ void	init_var(t_cub3d *data)
 	data->rot_right = false;
 	data->mouse_show = true;
 	data->wall_height = 0;
+}
+
+int	cross_click(t_cub3d	*data)
+{
+	int	i;
+
+	i = 0;
+	free(data->north);
+	free(data->soulth);
+	free(data->west);
+	free(data->east);
+	while (i < data->height)
+	{
+		free(data->map[i]);
+		data->map[i] = NULL;
+		i++;
+	}
+	free(data->map);
+	exit(0);
+	return (1);
 }
 
 void	replace_player(t_cub3d *data)
@@ -94,6 +114,9 @@ int	main(int ac, char **av)
 	parcing(&data, av[1]);
 	data.nbr_rays = WIDTH / data.wall_strip;
 	load_game(&data);
-	puts("gkhjg");
+	free(data.north);
+	free(data.soulth);
+	free(data.west);
+	free(data.east);
 	free_str(data.map);
 }

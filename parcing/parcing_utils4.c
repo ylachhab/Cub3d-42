@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parcing_utils4.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:18:47 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/26 15:30:01 by ylachhab         ###   ########.fr       */
+/*   Updated: 2023/12/29 17:13:04 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void	error(t_cub3d *data, char *str)
 {
+	free(data->north);
+	free(data->soulth);
+	free(data->west);
+	free(data->east);
 	free_str(data->map);
 	print_error(str);
 }

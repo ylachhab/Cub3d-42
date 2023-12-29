@@ -6,7 +6,7 @@
 /*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 20:09:12 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/29 16:36:40 by nel-baz          ###   ########.fr       */
+/*   Updated: 2023/12/29 17:36:46 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,6 @@ void	draw(t_cub3d *data)
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img, 0, 0);
 }
 
-int	cross_click(t_cub3d	*data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->height)
-	{
-		free(data->map[i]);
-		data->map[i] = NULL;
-		i++;
-	}
-	free(data->map);
-	exit(0);
-	return (1);
-}
-
 void	load_game(t_cub3d *data)
 {
 	data->mlx = mlx_init();
@@ -95,18 +79,15 @@ void	load_game(t_cub3d *data)
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_length, &data->img.endian);
 	if (!data->mlx || !data->mlx_win || !data->img.img || !data->img.addr)
-	{
-		free_str(data->map);
-		exit(1);
-	}
+		error(data, "ERROR\n");
 	data->center_mouse = false;
 	mlx_mouse_move(data->mlx_win, (WIDTH) / 2,
 		(HEIGHT) / 2);
 	mlx_mouse_get_pos(data->mlx_win, &data->mouse_x, &data->mouse_y);
-	set_tex(data, &data->img_n, "wall3.xpm");
-	set_tex(data, &data->img_s, "wall1.xpm");
-	set_tex(data, &data->img_w, "wall.xpm");
-	set_tex(data, &data->img_e, "wall2.xpm");
+	set_tex(data, &data->img_n, data->north);
+	set_tex(data, &data->img_s, data->soulth);
+	set_tex(data, &data->img_w, data->west);
+	set_tex(data, &data->img_e, data->east);
 	mlx_hook(data->mlx_win, 2, 0, &keypressed, data);
 	mlx_hook(data->mlx_win, 3, 0, &keyrelease, data);
 	mlx_hook(data->mlx_win, 17, 0, &cross_click, data);
