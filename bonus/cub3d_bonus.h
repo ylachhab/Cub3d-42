@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:39:39 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/29 17:37:20 by nel-baz          ###   ########.fr       */
+/*   Updated: 2023/12/29 17:51:32 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
-# include "./libft/libft.h"
-# include "./gnl/get_next_line.h"
-# include "./mlx/mlx.h"
+# include "../libft/libft.h"
+# include "../gnl/get_next_line.h"
+# include "../mlx/mlx.h"
 
 # include <math.h>
 # include <stdio.h>
