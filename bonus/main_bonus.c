@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 15:59:04 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/29 17:50:32 by nel-baz          ###   ########.fr       */
+/*   Updated: 2023/12/30 14:53:50 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void	parcing(t_cub3d *data, char *file)
 	valid_map(data);
 	replace_player(data);
 }
+
 
 int	main(int ac, char **av)
 {

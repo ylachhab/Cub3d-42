@@ -6,7 +6,7 @@
 /*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:39:39 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/29 17:51:32 by nel-baz          ###   ########.fr       */
+/*   Updated: 2023/12/30 12:07:11 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define MINIMAP_SCALE 0.2
 # define MINIMAP_WIDTH 300
 # define MINIMAP_HEIGHT 200
-# define MOUSE_ROT_SPEED 0.0007
+# define MOUSE_ROT_SPEED 0.003
 # define WIDTH 1200
 # define HEIGHT 720
 
