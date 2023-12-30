@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils2_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ylachhab <ylachhab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 16:15:06 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/29 18:05:29 by nel-baz          ###   ########.fr       */
+/*   Updated: 2023/12/30 13:18:17 by ylachhab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,7 @@ void	set_tex(t_cub3d *data, t_img *tex, char *str)
 			&tex->bits_per_pixel, &tex->line_length,
 			&tex->endian);
 	if (!tex->img || !tex->addr_tex)
-	{
-		free(data->north);
-		free(data->soulth);
-		free(data->west);
-		free(data->east);
-		free_str(data->map);
-		exit(1);
-	}
+		error(data, "Error in image\n");
 }
 
 void	center_mouse(t_cub3d *data)

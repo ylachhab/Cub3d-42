@@ -1,10 +1,10 @@
-NAME = cub3d
+NAME = cub3D
 
-NAME_B = cub3d_bonus
+NAME_B = cub3D_bonus
 
 CC = cc -g
 
-FLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
+FLAGS = -Wall -Werror -Wextra
 
 SRCS =	src/main.c \
 		src/parcing/parcing.c \
