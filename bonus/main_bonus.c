@@ -6,7 +6,7 @@
 /*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 15:59:04 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/29 17:50:32 by nel-baz          ###   ########.fr       */
+/*   Updated: 2023/12/30 09:13:29 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,15 @@ void	parcing(t_cub3d *data, char *file)
 	replace_player(data);
 }
 
+// void	f()
+// {
+// }
+
 int	main(int ac, char **av)
 {
 	t_cub3d	data;
 
+	// atexit(f);
 	if (ac != 2)
 		print_error("Error in the arguments\n");
 	parcing(&data, av[1]);
