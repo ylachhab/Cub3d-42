@@ -6,11 +6,12 @@
 /*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:28:27 by ylachhab          #+#    #+#             */
-/*   Updated: 2023/12/30 12:39:13 by nel-baz          ###   ########.fr       */
+/*   Updated: 2023/12/30 12:40:59 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 
 int	keypressed(int keycode, t_cub3d *data)
 {
